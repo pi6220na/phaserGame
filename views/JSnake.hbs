@@ -24,7 +24,7 @@
 
         // configuration variables and starting values
         var canvasWidth = 832, canvasHeight = 640;
-        var playerSize = 64;
+        var playerSize = 32;     // was 64
         var x = 128, y = 0;
         var frameCounter = 0;
         var gameSpeed = 20;
@@ -35,7 +35,7 @@
 
         // basic phaser preload/create/update functions
 
-        var game = new Phaser.Game(canvasWidth, canvasHeight, Phaser.CANVAS, '', { preload: preload, create: create, update: update });
+        var game = new Phaser.Game(canvasWidth, canvasHeight, Phaser.AUTO, '', { preload: preload, create: create, update: update });
 
         function preload() {
             game.load.image('elephant', 'assets/elephant.png');
@@ -145,6 +145,9 @@
             }
             this.game.forceSingleUpdate = true;
             game.time.advancedTiming = true;
+
+            game.renderer.renderSession.roundPixels = true;
+
         }
 
         function update() {
@@ -328,7 +331,7 @@
             if (cursors.right.isDown) {
 
                     //snake.animations.stop();
-                    snake.frame = 4;
+                    //snake.frame = 4;
                     snake.body.velocity.y = 0;
                     snake.body.velocity.x = 150;
                     snake.animations.play('right', 30, true)
@@ -338,7 +341,7 @@
             if (cursors.left.isDown) {
 
                 //snake.animations.stop();
-                snake.frame = 4;
+                //snake.frame = 4;
                 snake.body.velocity.y = 0;
                 snake.body.velocity.x = -150;
                 snake.animations.play('left', 30, true);
@@ -348,7 +351,7 @@
             if (cursors.up.isDown) {
 
                 //snake.animations.stop();
-                snake.frame = 4;
+                //snake.frame = 4;
                 snake.body.velocity.x = 0;
                 snake.body.velocity.y = -150;
                 snake.animations.play('up', 30, true);
@@ -357,7 +360,7 @@
             if (cursors.down.isDown) {
 
                 //snake.animations.stop();
-                snake.frame = 4;
+                //snake.frame = 4;
                 snake.body.velocity.x = 0;
                 snake.body.velocity.y = 150;
                 snake.animations.play('down', 30, true);
