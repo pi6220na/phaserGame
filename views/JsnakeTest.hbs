@@ -41,7 +41,7 @@
             game.load.image('elephant', 'assets/elephant.png');
             game.load.image('apple', 'assets/apple.png');
             //game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-            game.load.image('dude', 'assets/apple.png');
+            game.load.sprite('dude', 'assets/apple.png'); //was image
         }
 
         function create() {
@@ -54,7 +54,8 @@
             snake = game.add.sprite(32, game.world.height - 150, 'dude');snake.scale.setTo(0.5,0.5);
 
             //  We need to enable physics on the player
-            game.physics.arcade.enable(snake);
+            game.physics.p2.enable(snake);
+
 
             //game.physics.arcade.moves = true;
 
@@ -71,6 +72,7 @@
 
             snake.body.allowGravity = false;
 
+            snake.body.moves = false;
 
             //  Our two animations, walking left and right.
             snake.animations.add('left', [0, 1, 2, 3], 10, true);
@@ -335,11 +337,11 @@
             //if (cursors.right.isDown && snakeDirection !== directions.left) {
             if (cursors.right.isDown) {
 
-                    //snake.animations.stop();
-                    //snake.frame = 4;
-                    snake.body.velocity.y = 0;
-                    snake.body.velocity.x = 150;
-                    snake.animations.play('right', 30, true)
+                //snake.animations.stop();
+                //snake.frame = 4;
+                snake.body.velocity.y = 0;
+                snake.body.velocity.x = 150;
+                snake.animations.play('right', 30, true)
             }
             else
             //if (cursors.left.isDown && snakeDirection !== directions.right) {
@@ -371,10 +373,10 @@
                 snake.animations.play('down', 30, true);
             }
             //else {
-                //  Stand still
-                //snake.animations.stop();
+            //  Stand still
+            //snake.animations.stop();
 
-                //snake.frame = 0;
+            //snake.frame = 0;
             //}
         }
 
